@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Only Asees ❤️</title>
+
+<style>
+
+body{
+margin:0;
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+background:linear-gradient(135deg,#ff758c,#ff7eb3);
+font-family:'Segoe UI',sans-serif;
+overflow:hidden;
+color:white;
+}
+
+.card{
+width:760px;
+max-width:92%;
+padding:45px;
+border-radius:30px;
+background:rgba(255,255,255,.12);
+backdrop-filter:blur(25px);
+text-align:center;
+box-shadow:0 25px 80px rgba(0,0,0,.3);
+animation:fade 1s;
+}
+
+@keyframes fade{
+from{opacity:0; transform:translateY(40px);}
+}
+
+.hidden{display:none;}
+
+button{
+padding:16px 28px;
+border:none;
+border-radius:14px;
+background:white;
+color:#ff4d88;
+font-weight:bold;
+cursor:pointer;
+margin-top:20px;
+transition:.3s;
+}
+
+button:hover{transform:scale(1.08);}
+
+.glow{
+font-size:44px;
+font-weight:bold;
+text-shadow:0 0 20px white;
+animation:pulse 2s infinite;
+}
+
+@keyframes pulse{
+50%{text-shadow:0 0 35px white;}
+}
+
+input{
+padding:14px;
+border:none;
+border-radius:12px;
+width:220px;
+text-align:center;
+}
+
+/* Hearts */
+
+.heart{
+position:absolute;
+bottom:-20px;
+animation:float 7s linear infinite;
+opacity:.6;
+}
+
+@keyframes float{
+to{transform:translateY(-120vh);}
+}
+
+</style>
+</head>
+
+<body>
+
+<audio id="music" loop>
+<source src="music.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+
+/* Floating Hearts */
+
+setInterval(()=>{
+let h=document.createElement("div");
+h.className="heart";
+h.innerHTML="❤️";
+h.style.left=Math.random()*100+"vw";
+h.style.fontSize=(Math.random()*18+12)+"px";
+document.body.appendChild(h);
+setTimeout(()=>h.remove(),7000);
+},600);
+
+
+/* Navigation */
+
+function next(a,b){
+
+document.getElementById(a).classList.add("hidden");
+document.getElementById(b).classList.remove("hidden");
+
+/* Auto typing triggers */
+
+if(b==="rose"){
+setTimeout(()=>{
+type("roseText",
+"I know I didn’t give you a rose on Rose Day… and maybe you noticed, maybe you quietly let it pass — the way you often do with things that most people would complain about. But if I could place one in your hand right now, it would be a white rose. Not just because it is beautiful, but because it represents the calm you bring into my life. You don’t just add happiness to my world… you soften it. You make loud days quieter, heavy moments lighter, and somehow everything feels a little more okay when you are around. So consider this your forever rose 🌹 — one that will never dry, just like what I feel for you."
+);
+},400);
+}
+
+if(b==="propose"){
+setTimeout(()=>{
+type("propText",
+"After I came back from AIU, my mind was loud but somehow my words were missing. Most people would have rushed me… but you didn’t. You stayed. Quietly listening to my silence. Do you realize how rare that is? In that moment, I didn’t just feel cared for — I felt safe."
+);
+},400);
+}
+
+}
+
+
+/* Password */
+
+function enter(){
+let val=document.getElementById("pass").value.toLowerCase();
+
+if(val==="asees"){
+document.getElementById("music").play();
+next('login','cutest');
+}else{
+alert("Access denied. You are cute… but not THE cute.");
+}
+}
+
+/* Typing */
+
+function type(id,text,speed=35){
+let i=0;
+document.getElementById(id).innerHTML="";
+function t(){
+if(i<text.length){
+document.getElementById(id).innerHTML+=text.charAt(i);
+i++;
+setTimeout(t,speed);
+}}
+t();
+}
+
+/* Confetti */
+
+function confetti(){
+for(let i=0;i<120;i++){
+let c=document.createElement("div");
+c.innerHTML="💖";
+c.style.position="absolute";
+c.style.left=Math.random()*100+"vw";
+c.style.top="-20px";
+c.style.fontSize="22px";
+c.style.animation="float 4s linear";
+document.body.appendChild(c);
+setTimeout(()=>c.remove(),4000);
+}
+}
+
+/* Reasons */
+
+let reasons=[
+"Your smile resets my worst days.",
+"You listened to my silence.",
+"You are peace in human form.",
+"You make ordinary days magical.",
+"You care in ways people don't even notice.",
+"You walked into my life and softened it."
+];
+
+function newReason(){
+document.getElementById("reasonBox").innerHTML =
+reasons[Math.floor(Math.random()*reasons.length)];
+}
+
+</script>
+
+<!-- LOGIN -->
+
+<div class="card" id="login">
+
+<div class="glow">Private</div>
+
+<h2>This space is reserved for Asees ❤️</h2>
+<p>Password is the name of the only girl this works for.</p>
+
+<input id="pass" placeholder="Her Name">
+
+<br>
+<button onclick="enter()">Enter</button>
+
+</div>
+
+
+
+<!-- CUTEST QUESTION -->
+
+<div class="card hidden" id="cutest">
+
+<h2>Security Check 😌</h2>
+<p>Are you officially the cutest girl alive?</p>
+
+<button onclick="next('cutest','welcome'); 
+type('typing',
+'Before you continue… I need you to know something. Effort isn’t always loud. But you? You have always been worth it.')">
+YES obviously
+</button>
+
+<button onclick="alert('Incorrect answer detected. Please retry with honesty 😌')">
+No
+</button>
+
+</div>
+
+
+
+<!-- WELCOME -->
+
+<div class="card hidden" id="welcome">
+
+<h1 class="glow">Asees</h1>
+<p id="typing"></p>
+
+<button onclick="next('welcome','rose'); type('roseText',
+'I know I didn’t give you a rose on Rose Day… and maybe you noticed, maybe you quietly let it pass — the way you often do with things that most people would complain about. But if I could place one in your hand right now, it would be a white rose. Not just because it is beautiful, but because it represents the calm you bring into my life. You don’t just add happiness to my world… you soften it. You make loud days quieter, heavy moments lighter, and somehow everything feels a little more okay when you are around. So consider this your forever rose 🌹 — one that will never dry, just like what I feel for you.')">
+Open Your Letter →
+</button>
+
+
+</div>
+
+
+
+<!-- ROSE -->
+
+<div class="card hidden" id="rose">
+
+<h1>🌹 Rose Day</h1>
+<p id="roseText"></p>
+
+<button onclick="next('rose','propose'); type('propText',
+'After I came back from AIU, my mind was loud but my words were missing. Most people would have rushed me… but you didn’t. You stayed. Quietly listening to my silence. Do you realize how rare that is? In that moment, I didn’t just feel cared for — I felt safe.')">
+Continue →
+</button>
+
+</div>
+
+
+
+<!-- PROPOSE -->
+
+<div class="card hidden" id="propose">
+
+<h1>💍 Propose Day</h1>
+<p id="propText"></p>
+
+<h2 class="glow">I Love You. Truly. Calmly. Certainly.</h2>
+
+<p>Will you continue tolerating my anime talks and emotional buffering?</p>
+
+<button onclick="confetti(); next('propose','choco')">
+Accept Proposal ❤️
+</button>
+
+<button onclick="alert('Error: Option unavailable. You are stuck with me 😌')">
+Reject
+</button>
+
+</div>
+
+
+
+<!-- CHOCOLATE -->
+
+<div class="card hidden" id="choco">
+
+<h1>🍫 Chocolate Day</h1>
+
+<p>
+I got you dark chocolate… because I love it 🙂  
+But you don’t like dark chocolate.
+</p>
+
+<p><b>Who should eat the dark chocolate?</b></p>
+
+<button onclick="alert('Correct. I will bravely sacrifice myself.')">
+You
+</button>
+
+<button onclick="alert('Nice try. Not happening 😌')">
+Me
+</button>
+
+<p style="margin-top:15px;">
+Love isn’t giving what we like.  
+It’s understanding what makes YOU smile.
+
+<b>This one is yours — the sweetest one.</b>
+</p>
+
+<button onclick="next('choco','reasons')">
+One Last Thing →
+</button>
+
+</div>
+
+
+
+<!-- REASONS -->
+
+<div class="card hidden" id="reasons">
+
+<h2>Reasons I Love You ❤️</h2>
+
+<p id="reasonBox">Click below...</p>
+
+<button onclick="newReason()">Tell Me Another</button>
+
+<h2 class="glow" style="margin-top:20px;">
+Happy Chocolate Day ❤️
+</h2>
+
+</div>
+
+</body>
+</html>
